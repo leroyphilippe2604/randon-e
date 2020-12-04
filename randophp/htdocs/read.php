@@ -10,6 +10,7 @@ require_once 'connecte.php'
   </head>
   <body>
     <h1>Liste des randonnées</h1>
+    <a href="create.php"> Ajoutez une randonnée</a>
     <table>
       <!-- Afficher la liste des randonnées -->
         <tr>
@@ -24,12 +25,13 @@ require_once 'connecte.php'
         $sql = $pdo -> query('select * from hiking');
         while ($rows = $sql -> fetch()){
             echo 
-            '<tr> <td><a href="upadate.php?id=' . $rows['id'] . '">' . $rows['id'] . '</a></td>
+            '<tr> <td> <a href="update.php?id=' . $rows['id'] . '">' . $rows['id'] . '</a></td>
             <td>' . $rows['name'] . '</td>
             <td>' . $rows['difficulty'] . '</td>
             <td>' . $rows['distance'] . '</td>
             <td>' . $rows['duration'] . '</td>
-            <td>' . $rows['height_difference'] . '</td> </tr>';
+            <td>' . $rows['height_difference'] . '</td> 
+            <td><a class="button" href="delete.php?id=' . $rows['id'] . '">DELETE</a></td>';
         }
         $sql -> closeCursor();
         ?>
